@@ -1,0 +1,11 @@
+Home: Endpoint
+DataStores
+--> Entities
+    --> Infos
+    --> Mappings
+Properties
+--> EnvArea
+    --> KeyValue Pair
+    --> Extended Properties
+Ping
+Settings
