@@ -2,10 +2,10 @@
   <div v-if="this.$root.isConnected">
     <img src="../assets/logo.png">
     <h1>{{ msg }}</h1>
+        <md-button class="md-raised md-primary" v-on:click="disconnect">Disconnect</md-button>
   </div>
   <div v-else>
     <h1>Connect to your GIO-Server</h1>
-    <p>{{message}}</p>
     <div class="md-layout-item md-small-size-100">
       <md-field>
         <label for="url">URL</label>
@@ -31,11 +31,12 @@ export default {
     connect: function () {
       const vm = this
       vm.sending = true
-      vm.message = 'Connecting'
-      console.log('Connecting to ' + this.url + '...')
-      console.log(this)
-      this.$root.isConnected = true
+      vm.$root.isConnected = true
       vm.sending = false
+    },
+    disconnect: function () {
+      const vm = this
+      vm.$root.isConnected = false
     }
   },
   mounted: function () {
