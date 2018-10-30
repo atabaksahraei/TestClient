@@ -33,7 +33,7 @@
             <span class="md-list-item-text">DataStores</span>
           </md-list-item>
 
-          <md-list-item to='/properties' :disabled="this.$root.isConnected == false">
+          <md-list-item to='/property' :disabled="this.$root.isConnected == false">
             <md-icon>settings_input_component</md-icon>
             <span class="md-list-item-text">Properties</span>
           </md-list-item>

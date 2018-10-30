@@ -5,6 +5,7 @@ import Router from 'vue-router'
 import Connection from '@/components/Connection'
 import Start from '@/components/Start'
 import NotFound from '@/components/NotFound'
+import Property from '@/components/Property'
 
 // Material Config
 import VueMaterial from 'vue-material'
@@ -27,6 +28,11 @@ const router = new Router({
       component: Connection
     },
     {
+      path: '/property',
+      name: 'Property',
+      component: Property
+    },
+    {
       path: '/name',
       name: 'MyName',
       component: Start
@@ -40,7 +46,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/', '/name']
+  const publicPages = ['/', '/connection', '/name']
   const connectionRequired = !publicPages.includes(to.path)
   if (connectionRequired && !router.app.isConnected) {
     return next('/connection')

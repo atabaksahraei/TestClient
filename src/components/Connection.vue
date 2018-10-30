@@ -47,8 +47,6 @@ export default {
       const vm = this
       vm.$root.isConnected = false
     }
-  },
-  mounted: function () {
   }
 }
 </script>
