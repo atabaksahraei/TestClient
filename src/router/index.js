@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // Base Components
-import Home from '@/components/Home'
+import Connection from '@/components/Connection'
 import Start from '@/components/Start'
 import NotFound from '@/components/NotFound'
 
@@ -18,8 +18,13 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'Connection',
+      component: Connection
+    },
+    {
+      path: '/connection',
+      name: 'Connection',
+      component: Connection
     },
     {
       path: '/name',
@@ -38,7 +43,7 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['/', '/name']
   const connectionRequired = !publicPages.includes(to.path)
   if (connectionRequired && !router.app.isConnected) {
-    return next('/')
+    return next('/connection')
   }
 
   next()

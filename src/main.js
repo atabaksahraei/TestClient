@@ -3,13 +3,34 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
 Vue.mixin({
   data: () => ({
-    isConnected: false
-  })
+    isConnected: false,
+    areas: []
+  }),
+  watch: {
+    isConnected: {
+      handler: function (val, oldVal) {
+        const vm = this
+        if (val !== oldVal) {
+          if (val === true) {
+            axios
+              .get('/property')
+              .then(response => {
+                this.areas = response.data
+              })
+          } else {
+            vm.areas = []
+          }
+        }
+      },
+      deep: true
+    }
+  }
 })
 
 /* eslint-disable no-new */

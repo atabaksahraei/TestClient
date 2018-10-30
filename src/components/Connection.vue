@@ -1,7 +1,9 @@
 <template>
   <div v-if="this.$root.isConnected">
     <img src="../assets/logo.png">
-    <h1>{{ msg }}</h1>
+    <h1>{{ title }}</h1>
+    <div>{{ msg }}</div>
+    <div>{{ this.$root.areas }}</div>
         <md-button class="md-raised md-primary" v-on:click="disconnect">Disconnect</md-button>
   </div>
   <div v-else>
@@ -17,22 +19,29 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
-  name: 'Home',
+  name: 'Connection',
   data: () => ({
-    msg: 'Hi Vue.js :)',
-    url: 'https://',
-    sending: false,
-    message: 'Test'
+    title: 'You are connected :)',
+    msg: '',
+    url: 'localhost:44392',
+    sending: false
   }),
 
   methods: {
     connect: function () {
       const vm = this
       vm.sending = true
-      vm.$root.isConnected = true
-      vm.sending = false
+      axios.defaults.baseURL = 'https://' + 'localhost:44392'
+      axios
+        .get('/ping')
+        .then(response => {
+          vm.msg = response.data
+          vm.$root.isConnected = true
+          vm.sending = false
+        })
     },
     disconnect: function () {
       const vm = this

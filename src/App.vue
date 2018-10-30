@@ -23,9 +23,9 @@
         </md-toolbar>
         <md-list id="menu">
 
-          <md-list-item to='/'>
+          <md-list-item to='/connection'>
             <md-icon>home</md-icon>
-            <span class="md-list-item-text">Home</span>
+            <span class="md-list-item-text">Connection</span>
           </md-list-item>
 
           <md-list-item to='/datastores' :disabled="this.$root.isConnected == false">
