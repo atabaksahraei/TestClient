@@ -44,14 +44,12 @@ export default {
         })
     },
     disconnect: function () {
-      const vm = this
-      vm.$root.isConnected = false
+      this.$root.isConnected = false
     }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;

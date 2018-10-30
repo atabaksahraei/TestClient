@@ -38,9 +38,9 @@
             <span class="md-list-item-text">Properties</span>
           </md-list-item>
 
-          <md-list-item to='/ping' :disabled="this.$root.isConnected == false">
+          <md-list-item to='/Runtime' :disabled="this.$root.isConnected == false">
             <md-icon>healing</md-icon>
-            <span class="md-list-item-text">Heath</span>
+            <span class="md-list-item-text">Runtime</span>
           </md-list-item>
 
           <md-list-item to='/settings' :disabled="this.$root.isConnected == false">
