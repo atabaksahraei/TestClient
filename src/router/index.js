@@ -37,7 +37,7 @@ router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   const publicPages = ['/', '/name']
   const connectionRequired = !publicPages.includes(to.path)
-  if (connectionRequired && !this.a.app.isConnected) {
+  if (connectionRequired && !router.app.isConnected) {
     return next('/')
   }
 
