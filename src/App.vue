@@ -5,7 +5,7 @@
         <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <md-icon v-if="isConnected == false" >mobile_off</md-icon>
+        <md-icon v-if="this.$root.isConnected == false" >mobile_off</md-icon>
         <span class="md-title">{{title}}</span>
       </md-app-toolbar>
 
@@ -28,22 +28,22 @@
             <span class="md-list-item-text">Home</span>
           </md-list-item>
 
-          <md-list-item to='/datastores' :disabled="isConnected == false">
+          <md-list-item to='/datastores' :disabled="this.$root.isConnected == false">
             <md-icon>whatshot</md-icon>
             <span class="md-list-item-text">DataStores</span>
           </md-list-item>
 
-          <md-list-item to='/properties' :disabled="isConnected == false">
+          <md-list-item to='/properties' :disabled="this.$root.isConnected == false">
             <md-icon>settings_input_component</md-icon>
             <span class="md-list-item-text">Properties</span>
           </md-list-item>
 
-          <md-list-item to='/ping' :disabled="isConnected == false">
+          <md-list-item to='/ping' :disabled="this.$root.isConnected == false">
             <md-icon>healing</md-icon>
             <span class="md-list-item-text">Heath</span>
           </md-list-item>
 
-          <md-list-item to='/settings' :disabled="isConnected == false">
+          <md-list-item to='/settings' :disabled="this.$root.isConnected == false">
             <md-icon>settings</md-icon>
             <span class="md-list-item-text">Settings</span>
           </md-list-item>

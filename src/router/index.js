@@ -14,7 +14,7 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(VueMaterial)
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -32,3 +32,16 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = ['/', '/name']
+  const connectionRequired = !publicPages.includes(to.path)
+  if (connectionRequired && !this.a.app.isConnected) {
+    return next('/')
+  }
+
+  next()
+})
+
+export default router

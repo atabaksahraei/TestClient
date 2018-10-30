@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isConnected">
+  <div v-if="this.$root.isConnected">
     <img src="../assets/logo.png">
     <h1>{{ msg }}</h1>
   </div>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Home',
   data: () => ({
@@ -27,20 +28,17 @@ export default {
   }),
 
   methods: {
-    connect: () => {
-      this.sending = true
-      this.message = 'Connecting'
+    connect: function () {
+      const vm = this
+      vm.sending = true
+      vm.message = 'Connecting'
       console.log('Connecting to ' + this.url + '...')
-      this.isConnected = true
-      // this.sending = false
+      console.log(this)
+      this.$root.isConnected = true
+      vm.sending = false
     }
   },
   mounted: function () {
-    // this.connect()
-    this.sending = true
-    this.message = 'Connecting'
-    console.log('Connecting to ' + this.url + '...')
-    this.isConnected = true
   }
 }
 </script>

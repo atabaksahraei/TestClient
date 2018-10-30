@@ -5,19 +5,11 @@ import App from './App'
 import router from './router'
 
 Vue.config.productionTip = false
-this.$optionsObject.isConnected = true
 
 Vue.mixin({
   data: () => ({
-  }),
-  methods: {
-    assertConnected () {
-      if (!this.isConnected) {
-        console.log('Not Connected')
-        router.push({ path: '/' })
-      }
-    }
-  }
+    isConnected: false
+  })
 })
 
 /* eslint-disable no-new */

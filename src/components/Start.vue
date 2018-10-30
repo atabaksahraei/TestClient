@@ -12,7 +12,7 @@ export default {
   name: 'CallMyName',
   data () {
     return {
-      selectedName: null,
+      selectedName: '',
       names: [
         'Atabak',
         'Isabell',
@@ -24,9 +24,6 @@ export default {
         'Ati'
       ]
     }
-  },
-  mounted: function () {
-    this.assertConnected()
   }
 }
 </script>
