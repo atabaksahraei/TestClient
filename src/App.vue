@@ -42,12 +42,6 @@
             <md-icon>healing</md-icon>
             <span class="md-list-item-text">Runtime</span>
           </md-list-item>
-
-          <md-list-item to='/settings' :disabled="this.$root.isConnected == false">
-            <md-icon>settings</md-icon>
-            <span class="md-list-item-text">Settings</span>
-          </md-list-item>
-
         </md-list>
       </md-app-drawer>
 

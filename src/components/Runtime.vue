@@ -5,7 +5,7 @@
     <md-tabs>
       <md-tab id="tab-home" md-label="Ping" md-icon="toys">
         <md-button class="md-raised" v-on:click="doPing">Ping</md-button>
-        <div v-for="audit in audits" :key="audit.timestamp" :class="audit.auditLevel">{{ audit.message }}</div>
+        <md-content v-for="audit in audits" :key="audit.timestamp" :class="audit.auditLevel">{{ audit | auditWithIndent }}</md-content>
       </md-tab>
       <md-tab id="tab-pages" md-label="Cache" md-icon="save_alt">
         <md-button class="md-raised" v-on:click="doClearCache">ClearCache</md-button>
@@ -30,6 +30,18 @@ export default {
     settingsMsg: '',
     audits: ''
   }),
+  filters: {
+    auditWithIndent: function (audit) {
+      if (!audit) return ''
+      var displayText = ''
+      for (var i = 0; i < audit.indentation; i++) {
+        displayText = displayText + '\t'
+      }
+
+      displayText = displayText + audit.message
+      return displayText
+    }
+  },
   methods: {
     doPing: function () {
       this.audits = ''
@@ -63,25 +75,32 @@ export default {
 </script>
 <style scoped>
 .Debug {
-  color: #FF9900
+  color: #FF9900;
+  white-space: pre-wrap;
 }
 .Verbose {
-  color: #888
+  color: #888;
+  white-space: pre-wrap;
 }
 .Info {
-  color: #000
+  color: #000;
+  white-space: pre-wrap;
 }
 .Important {
   color: #000;
   font-weight: bold;
+  white-space: pre-wrap;
 }
 .Warning {
-  color: #ffff00
+  color: #ffff00;
+  white-space: pre-wrap;
 }
 .Error {
-  color: #ff2222
+  color: #ff2222;
+  white-space: pre-wrap;
 }
 .Headline {
-  color: #2255ff
+  color: #2255ff;
+  white-space: pre-wrap;
 }
 </style>

@@ -26,7 +26,7 @@ export default {
   data: () => ({
     title: 'You are connected :)',
     msg: '',
-    url: 'localhost:44392',
+    url: axios.defaults.baseURL,
     sending: false
   }),
 
@@ -34,7 +34,11 @@ export default {
     connect: function () {
       const vm = this
       vm.sending = true
-      axios.defaults.baseURL = 'https://' + 'localhost:44392'
+      if (!vm.url.startsWith('http')) {
+        vm.url = 'https://' + vm.url
+      }
+
+      axios.defaults.baseURL = vm.url
       axios
         .get('/ping')
         .then(response => {
@@ -45,6 +49,13 @@ export default {
     },
     disconnect: function () {
       this.$root.isConnected = false
+    }
+  },
+  mounted: function () {
+    const vm = this
+    vm.url = axios.defaults.baseURL
+    if (vm.url === undefined || vm.url == null || vm.url.length <= 0) {
+      this.url = 'https://localhost:44392'
     }
   }
 }
