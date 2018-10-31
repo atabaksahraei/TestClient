@@ -28,7 +28,7 @@
             <span class="md-list-item-text">Connection</span>
           </md-list-item>
 
-          <md-list-item to='/datastores' :disabled="this.$root.isConnected == false">
+          <md-list-item to='/datastore' :disabled="this.$root.isConnected == false">
             <md-icon>whatshot</md-icon>
             <span class="md-list-item-text">DataStores</span>
           </md-list-item>

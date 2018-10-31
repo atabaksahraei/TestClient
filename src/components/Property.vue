@@ -20,11 +20,10 @@
 import axios from 'axios'
 
 export default {
-  name: 'Connection',
+  name: 'Property',
   data: () => ({
     area: '',
-    msg: '',
-    url: 'localhost:44392'
+    msg: ''
   }),
 
   methods: {
