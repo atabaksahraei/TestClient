@@ -12,8 +12,22 @@
         <div>{{ cacheMsg }}</div>
       </md-tab>
       <md-tab id="tab-posts" md-label="Settings" md-icon="build">
-        <md-button class="md-raised" v-on:click="doLoadSettings">Settings</md-button>
-        <div>{{ settingsMsg }}</div>
+          <md-button class="md-icon-button md-dense md-raised md-primary" v-on:click="doLoadSettings">
+            <md-icon>cached</md-icon>
+          </md-button>
+        <div>
+        <md-table md-card>
+          <md-table-row>
+            <md-table-head>Key</md-table-head>
+            <md-table-head>Value</md-table-head>
+          </md-table-row>
+
+          <md-table-row v-for="item in settingsTable" :key="item.key">
+            <md-table-cell> {{ item.key }} </md-table-cell>
+            <md-table-cell> {{ item.value}} </md-table-cell>
+          </md-table-row>
+        </md-table>
+      </div>
       </md-tab>
     </md-tabs>
   </div>
@@ -27,7 +41,7 @@ export default {
   data: () => ({
     msg: '',
     cacheMsg: '',
-    settingsMsg: '',
+    settingsTable: '',
     audits: ''
   }),
   filters: {
@@ -62,14 +76,25 @@ export default {
         })
     },
     doLoadSettings: function () {
-      this.settingsMsg = ''
-      this.msg = ''
+      var vm = this
+      vm.settingsTable = []
       axios
         .get('/settings')
         .then(response => {
-          this.settingsMsg = response.data
+          var result = response.data
+          for (const key of Object.keys(result)) {
+            vm.settingsTable.push(
+              {
+                'key': key,
+                'value': result[key]
+              }
+            )
+          }
         })
     }
+  },
+  mounted: function () {
+    this.doLoadSettings()
   }
 }
 </script>

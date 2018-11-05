@@ -55,7 +55,7 @@ export default {
     const vm = this
     vm.url = axios.defaults.baseURL
     if (vm.url === undefined || vm.url == null || vm.url.length <= 0) {
-      this.url = 'https://localhost:44392'
+      this.url = 'http://localhost:51394'
     }
   }
 }

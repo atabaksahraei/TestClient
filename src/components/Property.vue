@@ -12,7 +12,19 @@
       </md-button>
       </md-field>
     </div>
-    <div>{{ msg }}</div>
+    <div>
+      <md-table md-card>
+        <md-table-row>
+          <md-table-head>Key</md-table-head>
+          <md-table-head>Value</md-table-head>
+        </md-table-row>
+
+        <md-table-row v-for="item in table" :key="item.key">
+          <md-table-cell> {{ item.key }} </md-table-cell>
+          <md-table-cell> {{ item.value}} </md-table-cell>
+        </md-table-row>
+      </md-table>
+    </div>
   </div>
 </template>
 
@@ -23,16 +35,26 @@ export default {
   name: 'Property',
   data: () => ({
     area: '',
-    msg: ''
+    table: []
   }),
 
   methods: {
     load: function () {
-      this.msg = ''
+      const vm = this
+      vm.msg = ''
       axios
         .get('/property/' + this.area)
         .then(response => {
-          this.msg = response.data
+          var result = response.data
+          vm.table = []
+          for (const key of Object.keys(result)) {
+            vm.table.push(
+              {
+                'key': key,
+                'value': result[key]
+              }
+            )
+          }
         })
     }
   },

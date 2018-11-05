@@ -7,12 +7,21 @@
         <md-select v-model="entity" name="areas" id="areas" md-dense>
           <md-option v-for="singleEntity in entities" :key="singleEntity" :value="singleEntity">{{ singleEntity }}</md-option>
         </md-select>
-          <md-button class="md-icon-button md-dense md-raised md-primary" v-on:click="loadDataStores">
-        <md-icon>cached</md-icon>
-      </md-button>
+        <md-button class="md-icon-button md-dense md-raised md-primary" v-on:click="loadDataStores">
+          <md-icon>cached</md-icon>
+        </md-button>
       </md-field>
     </div>
-    <div>{{ msg }}</div>
+    <div>
+      <md-table md-card>
+        <md-table-row>
+          <md-table-head v-for="key in keys" :key="key"> {{key}} </md-table-head>
+        </md-table-row>
+        <md-table-row v-for="item in data" :key="item">
+          <md-table-cell v-for="cellKey in keys" :key="cellKey"> {{ item[cellKey] }} </md-table-cell>
+        </md-table-row>
+      </md-table>
+    </div>
   </div>
 </template>
 
@@ -24,7 +33,8 @@ export default {
   data: () => ({
     entity: '',
     entities: [],
-    msg: ''
+    data: [],
+    keys: []
   }),
   mounted: function () {
     this.loadDataStores()
@@ -40,11 +50,11 @@ export default {
     },
     getAll: function () {
       const vm = this
-      vm.msg = ''
       axios
         .get('/api/' + this.entity)
         .then(response => {
-          vm.msg = response.data
+          vm.data = response.data
+          vm.keys = Object.keys(vm.data[0])
         })
     }
   },
