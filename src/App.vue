@@ -38,6 +38,11 @@
             <span class="md-list-item-text">Properties</span>
           </md-list-item>
 
+          <md-list-item to='/synch' :disabled="this.$root.isConnected == false">
+            <md-icon>sync</md-icon>
+            <span class="md-list-item-text">Synchronization</span>
+          </md-list-item>
+
           <md-list-item to='/Runtime' :disabled="this.$root.isConnected == false">
             <md-icon>healing</md-icon>
             <span class="md-list-item-text">Runtime</span>

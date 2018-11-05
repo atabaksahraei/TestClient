@@ -7,6 +7,7 @@ import NotFound from '@/components/NotFound'
 import Property from '@/components/Property'
 import Runtime from '@/components/Runtime'
 import DataStore from '@/components/DataStore'
+import Synchronization from '@/components/Synchronization'
 
 // Material Config
 import VueMaterial from 'vue-material'
@@ -22,6 +23,7 @@ const router = new Router({
     { path: '/connection', name: 'Connection', component: Connection },
     { path: '/dataStore', name: 'DataStore', component: DataStore },
     { path: '/property', name: 'Property', component: Property },
+    { path: '/synch', name: 'Synchronization', component: Synchronization },
     { path: '/runtime', name: 'Runtime', component: Runtime },
     { path: '*', name: 'Not found', component: NotFound }
   ]

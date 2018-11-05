@@ -29,7 +29,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'DataStore',
+  name: 'Synchronization',
   data: () => ({
     entity: '',
     entities: [],
